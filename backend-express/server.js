@@ -38,8 +38,8 @@ app.get("/url_query", (req, res) => {
 
 app.post("/pregunta", (req, res) => {
     const respuestaUser = req.body.respuestaUser
-    console.log(typeof(respuestaUser))
-    if(respuestaUser === 2){
+    
+    if(respuestaUser == "iloveyou"){
         res.send("Correcto")
     } else {
         res.send("Fallo")
