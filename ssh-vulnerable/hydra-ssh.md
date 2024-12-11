@@ -8,7 +8,7 @@ Comprobar usuario user1 con diccionario en ssh://localhost:22 con 4 hilos
 
 Comprobar usuarios y contraseña con diccionarios en ssh://localhost:22
 
-`hydra -L /usernames.txt -P /rockyou.txt ssh://localhost:2`
+`hydra -L usernames.txt -P rockyou.txt ssh://localhost:2222`
 
 Comprobar usuarios y contraseña con diccionarios en ssh://localhost:22 con 4 hilos, evitando bloqueo
 

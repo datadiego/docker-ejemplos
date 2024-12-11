@@ -8,8 +8,8 @@ RUN apt-get update && apt-get install -y openssh-server sudo
 RUN mkdir /var/run/sshd
 
 # Crear usuarios con contraseñas personalizadas
-RUN useradd -m -s /bin/bash user1 && echo "user1:iloveyou" | chpasswd && usermod -aG sudo user1
 RUN echo "la bandera es {onlygreatideas}" > /flag.txt
+RUN useradd -m -s /bin/bash user1 && echo "user1:iloveyou" | chpasswd && usermod -aG sudo user1
 RUN useradd -m -s /bin/bash user2 && echo "user2:123456789" | chpasswd
 RUN useradd -m -s /bin/bash user3 && echo "user3:fuckyou2" | chpasswd
 RUN useradd -m -s /bin/bash user4 && echo "user4:darkangel" | chpasswd
@@ -30,4 +30,6 @@ EXPOSE 22
 # Comando para iniciar el servicio SSH
 CMD ["/usr/sbin/sshd", "-D"]
 
-# run with docker run -d -p 2222:22 ssh_lab
+# build with docker build -t ssh_lab .
+
+# run with docker run -d -p 2222:22 usuario/ssh_lab

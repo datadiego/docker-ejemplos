@@ -4,9 +4,8 @@ PasswordAuthentication no
 PubkeyAuthentication yes
 AuthorizedKeysFile    .ssh/authorized_keys
 KbdInteractiveAuthentication no
-
 UsePAM yes
 X11Forwarding yes
 PrintMotd no
 AcceptEnv LANG LC_*
-Subsystem	sftp	/usr/lib/openssh/sftp-server
+Subsystem   sftp	/usr/lib/openssh/sftp-server

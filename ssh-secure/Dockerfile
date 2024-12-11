@@ -42,5 +42,4 @@ CMD ["/usr/sbin/sshd", "-D"]
 # docker run -d -p 2222:22 ssh-server
 
 # Conectar al contenedor
-# chmod 600 authorized_keys_user1
-# ssh -i authorized_keys_user1 user1@localhost -p 2222
+# ssh -i user1_rsa user1@localhost -p 2222
