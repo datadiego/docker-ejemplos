@@ -13,3 +13,11 @@ describe('GET /users', () => {
         expect(response.statusCode).toBe(200);
     });
 });
+
+describe('GET /users/1', () => {
+    it('responds with json', async () => {
+        const response = await request(app).get('/users');
+        expect(response.statusCode).toBe(200);
+        expect(response.body).toEqual({ id: 1, username: "admin", password: "admin", current_hash: "aaaa" });
+    });
+});
