@@ -1,12 +1,11 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
-
+const bodyParser = require('body-parser');
 const app = express();
-const secretKey = 'your_secret_key';
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
+app.use(bodyParser.urlencoded({ extended: true }));
+const secretKey = 'your_secret_key';
 app.use(cookieParser(secretKey));
 
 const usuarios = [
@@ -15,19 +14,33 @@ const usuarios = [
     { id: 3, name: 'Beltrano', password: 'abcd' }
 ];
 
+const authMiddleware = (req, res, next) => {
+    const userId = req.signedCookies.id;
+
+    if (userId) {
+        next();
+    } else {
+        res.status(401).send('No autorizado');
+    }
+};
+
 app.post('/login', (req, res) => {
-    const { username, password } = req.body;
-
-    const user = usuarios.find(user => user.name === username && user.password === password);
-
+    const { name, password } = req.body;
+    const user = usuarios.find(u => u.name === name && u.password === password);
+    console.log(name, password)
+    console.log(user)
     if (user) {
-        res.cookie('user', JSON.stringify(user), { signed: true, secret: secretKey });
+        res.cookie('id', user.id, { signed: true, httpOnly: true });
         res.send('Login exitoso');
     } else {
-        res.status(401).send('Usuario o contraseña incorrectos');
+        res.status(401).send('Credenciales incorrectas');
     }
 });
 
+app.get('/private', authMiddleware, (req, res) => {
+    res.send('Contenido privado, solo puedes ver esto si estás logueado');
+});
+
 app.listen(3000, () => {
-    console.log('Server is running on port 3000');
+    console.log('Servidor escuchando en el puerto 3000');
 });

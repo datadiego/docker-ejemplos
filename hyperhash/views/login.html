@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio</title>
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+<pre class="centered">
+    __                          __               __  
+   / /_  __  ______  ___  _____/ /_  ____ ______/ /_ 
+  / __ \/ / / / __ \/ _ \/ ___/ __ \/ __ `/ ___/ __ \
+ / / / / /_/ / /_/ /  __/ /  / / / / /_/ (__  ) / / /
+/_/ /_/\__, / .___/\___/_/  /_/ /_/\__,_/____/_/ /_/ 
+      /____/_/                                       
+</pre>
+<h1 class="centered">Password cracking platform</h1>
+<body>
+    <h2>Login</h2>
+    <form action="/api/auth/login" method="POST">
+        <input type="text" placeholder="user" name="username" required>
+        <input type="password" placeholder="password" name="password" required>
+        <input type="submit" value="Enviar">
+    </form>
+
+</body>
+</html>
