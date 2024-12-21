@@ -19,6 +19,15 @@ app.use(express.static('views'));
 app.use('/api/users', require('./controllers/users'));
 app.use('/api/auth', require('./controllers/auth'));
 
+app.get('/', (req, res) => {
+    //check for the jwt token
+    const token = req.headers['x-access-token'];
+    if (!token) {
+        return res.redirect('/login.html');
+    }
+    res.redirect('/index.html');
+});
+
 app.listen(3000, () => {
     console.log('Server is running on port 3000');
 });

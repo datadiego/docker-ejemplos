@@ -8,6 +8,12 @@
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="index.css">
 </head>
+<nav>
+    <ul>
+        <li><a href="login.html">Login</a></li>
+        <li><a href="register.html">Register</a></li>
+    </ul>
+</nav>
 <pre class="centered">
     __                          __               __  
    / /_  __  ______  ___  _____/ /_  ____ ______/ /_ 
@@ -19,11 +25,31 @@
 <h1 class="centered">Password cracking platform</h1>
 <body>
     <h2>Login</h2>
-    <form action="/api/auth/login" method="POST">
+    <form>
         <input type="text" placeholder="user" name="username" required>
         <input type="password" placeholder="password" name="password" required>
         <input type="submit" value="Enviar">
     </form>
 
+    <script>
+        document.querySelector('form').addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const username = formData.get('username');
+            const password = formData.get('password');
+            const response = await fetch('/api/auth/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username, password })
+            });
+            const data = await response.json();
+            if (data.token) {
+                document.cookie = `token=${data.token}`;
+                window.location = '/game.html';
+            }
+        });
+    </script>
 </body>
 </html>
