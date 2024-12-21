@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mensaje</title>
+</head>
+<body>
+    <h1>{{ mensaje }}</h1>
+    <ul>
+        {% for fruta in frutas %}
+            <li>{{ fruta }}</li>
+        {% endfor %}
+    </ul>
+    <p>Nombre: {{ nombre }}</p>
+    {% if frutas %}
+        <p>Hay frutas</p>
+    {% endif %}
+    {% if magia %}
+        <p>Hay magia</p>
+    {% else %}
+        <p>No hay magia</p>
+    {% endif %}
+</body>
+</html>

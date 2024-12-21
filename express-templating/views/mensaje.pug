@@ -1,0 +1,13 @@
+doctype html
+html
+  head
+    title Mensaje
+  body
+    h1= mensaje
+    if frutas.length
+      p Hay frutas
+      ul
+        each fruta in frutas
+          li= fruta
+    p Nombre: #{nombre}
+    p Magia: #{magia}

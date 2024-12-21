@@ -13,7 +13,11 @@ if (!fs.existsSync(dbPath)) {
 //config
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static('views'));
+
+//views
+app.engine('squirrelly', require('squirrelly').renderFile);
+app.set('view engine', 'squirrelly');
+app.set('views', path.join(__dirname, 'views'));
 
 //router
 app.use('/api/users', require('./controllers/users'));
@@ -23,9 +27,13 @@ app.get('/', (req, res) => {
     //check for the jwt token
     const token = req.headers['x-access-token'];
     if (!token) {
-        return res.redirect('/login.html');
+        return res.render('login');
     }
-    res.redirect('/index.html');
+    res.render('index');
+});
+
+app.get('/mensaje', (req, res) => {
+    res.render('mensaje', { mensaje: 'Hola Mundo!' });
 });
 
 app.listen(3000, () => {
